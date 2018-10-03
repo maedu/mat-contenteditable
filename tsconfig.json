@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "mat-contenteditable": [
+        "dist/mat-contenteditable"
+      ],
+      "mat-contenteditable/*": [
+        "dist/mat-contenteditable/*"
+      ]
+    }
   }
 }
