@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MatContenteditableComponent } from './mat-contenteditable.component';
+
+import { MatContenteditableDirective } from './mat-contenteditable.directive';
 
 @NgModule({
   imports: [
   ],
-  declarations: [MatContenteditableComponent],
-  exports: [MatContenteditableComponent]
+  declarations: [ MatContenteditableDirective ],
+  exports: [ MatContenteditableDirective ]
 })
 export class MatContenteditableModule { }

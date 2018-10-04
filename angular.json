@@ -139,6 +139,11 @@
           "options": {
             "tsConfig": "projects/mat-contenteditable/tsconfig.lib.json",
             "project": "projects/mat-contenteditable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/mat-contenteditable/ng-package.prod.json"
+            }
           }
         },
         "test": {
