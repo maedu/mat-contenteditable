@@ -9,6 +9,29 @@ It just implements [ControlValueAccessor](https://angular.io/api/forms/ControlVa
 
 It implements MatFormFieldControl to support Angular Material
 
+### CSS tricks
+
+I found some useful CSS that can be used with this lib
+
+```css
+/* comment-input is applied to the container of contenteditable */
+.comment-input .mat-form-field-wrapper,
+.comment-input .mat-form-field-infix {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.comment-input .mat-form-field-flex {
+  align-items: center;
+}
+
+/* https://github.com/angular/material2/issues/13322 */
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+  display: inline-block !important;
+}
+```
+
 ## Install
 
 You can just copy and paste this [directive](projects/mat-contenteditable/src/lib/mat-contenteditable.directive.ts) or install it from npm:

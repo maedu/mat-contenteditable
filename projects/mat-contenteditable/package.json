@@ -1,6 +1,6 @@
 {
   "name": "mat-contenteditable",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Angular contenteditable directive for Angular forms and Material Design",
   "keywords" :["Angular", "Material", "ContentEditable", "Rich text"],
   "repository": {
@@ -10,7 +10,7 @@
   "author": "Yongnan Wu",
   "license": "GNU",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/common": "^6.0.0 || ^7.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0"
   }
 }
