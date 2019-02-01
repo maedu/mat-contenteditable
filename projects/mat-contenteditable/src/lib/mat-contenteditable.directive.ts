@@ -56,9 +56,9 @@ export class MatContenteditableDirective extends _MatInputMixinBase
 
   focused = false;
 
-  @Input() contentEmpty: Array<string> = ['<br>', '<div><br></div>', ''];
+  @Input() contentEmpty: Array<string> = ['<br>', '<div><br></div>'];
   get empty(): boolean {
-    return this.contentEmpty.includes(this.value);
+    return !this.value || this.contentEmpty.includes(this.value);
   }
 
   get shouldLabelFloat(): boolean { return this.focused || !this.empty; }

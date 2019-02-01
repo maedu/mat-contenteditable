@@ -1,16 +1,16 @@
 {
   "name": "mat-contenteditable",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "description": "Angular contenteditable directive for Angular forms and Material Design",
-  "keywords" :["Angular", "Material", "ContentEditable", "Rich text"],
+  "keywords" :["Angular", "Material", "ContentEditable", "Rich text", "CKEditor", "Text editor"],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wynfred/ng-mat-contenteditable.git"
+    "url": "git+https://github.com/wynfred/mat-contenteditable.git"
   },
   "author": "Yongnan Wu",
   "license": "GNU",
   "peerDependencies": {
-    "@angular/common": "^6.0.0 || ^7.0.0",
-    "@angular/core": "^6.0.0 || ^7.0.0"
+    "@angular/common": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "@angular/core": "^6.0.0 || ^7.0.0 || ^8.0.0"
   }
 }

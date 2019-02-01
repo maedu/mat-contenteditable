@@ -14,14 +14,14 @@ It implements MatFormFieldControl to support Angular Material
 I found some useful CSS that can be used with this lib
 
 ```css
-/* comment-input is applied to the container of contenteditable */
-.comment-input .mat-form-field-wrapper,
-.comment-input .mat-form-field-infix {
+/* mat-editor should be applied to the container of contenteditable (<mat-form-field>)*/
+.mat-editor .mat-form-field-wrapper,
+.mat-editor .mat-form-field-infix {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.comment-input .mat-form-field-flex {
+.mat-editor .mat-form-field-flex {
   align-items: center;
 }
 
@@ -29,6 +29,31 @@ I found some useful CSS that can be used with this lib
 .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
 .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
   display: inline-block !important;
+}
+```
+
+### CKEditor5 support
+
+There are 2 directives that can be used with CKEditor5.
+
+`matCkeditor` implements `MatFormFieldControl`
+`<ckeditor matCkeditor [editor]="ckEditor" [(ngModel)]="content"></ckeditor>`
+
+`matCkeditorBalloon` should be used with `@ckeditor/ckeditor5-build-balloon` and has an extra input to toggle toolbar of ckeditor.
+
+```html
+<ckeditor matCkeditorBalloon [toolbar]="toolbarStatus"
+  [editor]="ckEditor" (ready)="editorReady($event)" [config]="editorConfig"
+  [(ngModel)]="content">
+</ckeditor>
+```
+
+To remove the border of CKEditor
+
+```css
+.mat-editor .ck-content {
+  border: none !important;
+  box-shadow: none !important;
 }
 ```
 
