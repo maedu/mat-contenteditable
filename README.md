@@ -44,6 +44,8 @@ There are 2 directives that can be used with CKEditor5.
 
 `matCkeditorBalloon` should be used with `@ckeditor/ckeditor5-build-balloon` and has an extra input to toggle toolbar of ckeditor.
 
+![Screenshot](/sc.gif)
+
 ```html
 <ckeditor matCkeditorBalloon [toolbar]="toolbarStatus"
   [editor]="ckEditor" (ready)="editorReady($event)" [config]="editorConfig"
