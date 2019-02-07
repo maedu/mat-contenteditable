@@ -1,7 +1,8 @@
-import { Directive, Input, HostBinding, ViewContainerRef, OnInit } from '@angular/core';
-import { MatFormFieldControl, ErrorStateMatcher } from '@angular/material';
+import { Directive, Input, HostBinding, ViewContainerRef, OnInit, DoCheck, Optional, Self } from '@angular/core';
+import { MatFormFieldControl, ErrorStateMatcher, _MatInputMixinBase, CanUpdateErrorState } from '@angular/material';
 // import { CKEditorComponent } from '@ckeditor/ckeditor5-angular//ckeditor.component';
 import { Subject } from 'rxjs';
+import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
 
 @Directive({
   selector: '[matCkeditor]',
@@ -9,7 +10,8 @@ import { Subject } from 'rxjs';
     { provide: MatFormFieldControl, useExisting: MatCkeditorDirective },
   ]
 })
-export class MatCkeditorDirective implements MatFormFieldControl<string>, OnInit {
+export class MatCkeditorDirective  extends _MatInputMixinBase
+  implements MatFormFieldControl<string>, DoCheck, CanUpdateErrorState , OnInit {
 
   /**
    * Implemented as part of MatFormFieldControl.
@@ -62,14 +64,18 @@ export class MatCkeditorDirective implements MatFormFieldControl<string>, OnInit
 
   @HostBinding('attr.aria-describedby') describedBy = '';
 
-  ngControl;
-
   protected editor;
 
   constructor(
     // @Host() @Self() @Optional() public editor: CKEditorComponent,
     protected readonly viewRef: ViewContainerRef,
-  ) { }
+    @Optional() @Self() public ngControl: NgControl,
+    @Optional() _parentForm: NgForm,
+    @Optional() _parentFormGroup: FormGroupDirective,
+    _defaultErrorStateMatcher: ErrorStateMatcher,
+  ) {
+    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl);
+  }
 
   ngOnInit() {
     // Can't use injection to get component reference
@@ -83,6 +89,15 @@ export class MatCkeditorDirective implements MatFormFieldControl<string>, OnInit
       this.focused = true;
       this.stateChanges.next();
     });
+  }
+
+  ngDoCheck() {
+    if (this.ngControl) {
+      // We need to re-evaluate this on every change detection cycle, because there are some
+      // error triggers that we can't subscribe to (e.g. parent form submissions). This means
+      // that whatever logic is in here has to be super lean or we risk destroying the performance.
+      this.updateErrorState();
+    }
   }
 
   setDescribedByIds(ids: string[]) {
