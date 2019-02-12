@@ -36,16 +36,27 @@ I found some useful CSS that can be used with this lib
 
 There are 2 directives that can be used with CKEditor5.
 
-`matCkeditor` implements `MatFormFieldControl`
-`<ckeditor matCkeditor [editor]="ckEditor" [(ngModel)]="content"></ckeditor>`
+`matCkeditor` simply implements `MatFormFieldControl`
+
+```html
+<ckeditor matCkeditor [editor]="ckEditor" [(ngModel)]="content"></ckeditor>
+```
 
 `matCkeditorBalloon` should be used with `@ckeditor/ckeditor5-build-balloon` and has an extra input to toggle toolbar of ckeditor.
 
+![Screenshot](/sc.gif)
+
 ```html
-<ckeditor matCkeditorBalloon [toolbar]="toolbarStatus"
-  [editor]="ckEditor" (ready)="editorReady($event)" [config]="editorConfig"
-  [(ngModel)]="content">
-</ckeditor>
+<mat-form-field appearance="outline" class="mat-editor">
+  <ckeditor matCkeditorBalloon [toolbar]="toolbarStatus"
+    [editor]="ckEditor" (ready)="editorReady($event)" [config]="editorConfig"
+    [(ngModel)]="content">
+  </ckeditor>
+  <button matSuffix mat-icon-button type="button"
+    color="{{toolbarStatus && 'primary'}}" (click)="toolbarStatus = !toolbarStatus">
+    <mat-icon> tune </mat-icon>
+  </button>
+</mat-form-field>
 ```
 
 To remove the border of CKEditor
@@ -55,6 +66,15 @@ To remove the border of CKEditor
   border: none !important;
   box-shadow: none !important;
 }
+```
+
+To adjust form-field height
+
+```html
+<!-- make mat-form-field fill parent height -->
+<div fxLayout="column">
+  <mat-form-field appearance="outline" fxFlex formFieldSizer></mat-form-field>
+</div>
 ```
 
 ## Install
