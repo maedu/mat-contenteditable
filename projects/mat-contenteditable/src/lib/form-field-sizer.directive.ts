@@ -15,12 +15,22 @@ export class FormFieldSizerDirective implements AfterContentInit {
   }
 
   updateSize() {
-    const offset = this.elementRef.nativeElement.offsetHeight -
-      this.getElement('mat-form-field-wrapper').offsetHeight;
-    this.renderer.setStyle(this.getElement('mat-form-field-infix'), 'min-height', `${offset}px`);
+    const infix = this.getElement('mat-form-field-infix');
+    this.renderer.removeStyle(infix, 'min-height');
+
+    setTimeout(() => {
+      const wrapper = this.getElement('mat-form-field-wrapper');
+      const offset = this.elementRef.nativeElement.offsetHeight -
+        wrapper.offsetHeight -
+        parseFloat(getComputedStyle(wrapper).marginTop) -
+        parseFloat(getComputedStyle(wrapper).marginBottom) +
+        parseFloat(getComputedStyle(infix).height);
+
+      this.renderer.setStyle(infix, 'min-height', `${offset}px`);
+    });
   }
 
-  private getElement(name: string) {
+  private getElement(name: string): HTMLElement {
     return this.elementRef.nativeElement.getElementsByClassName(name).item(0);
   }
 
