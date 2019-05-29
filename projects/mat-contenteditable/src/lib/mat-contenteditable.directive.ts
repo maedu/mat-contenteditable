@@ -7,13 +7,11 @@ import {
   HostBinding,
   Optional,
   Self,
-  DoCheck
 } from '@angular/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { CanUpdateErrorState, ErrorStateMatcher } from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { _MatInputMixinBase } from '@angular/material/input';
 import { Subject } from 'rxjs';
 
 @Directive({
@@ -22,8 +20,7 @@ import { Subject } from 'rxjs';
     { provide: MatFormFieldControl, useExisting: MatContenteditableDirective },
   ]
 })
-export class MatContenteditableDirective extends _MatInputMixinBase
-  implements ControlValueAccessor, MatFormFieldControl<string>, DoCheck, CanUpdateErrorState {
+export class MatContenteditableDirective implements ControlValueAccessor, MatFormFieldControl<string> {
 
   /**
    * Implemented as part of MatFormFieldControl.
@@ -106,19 +103,9 @@ export class MatContenteditableDirective extends _MatInputMixinBase
     @Optional() _parentFormGroup: FormGroupDirective,
     _defaultErrorStateMatcher: ErrorStateMatcher,
   ) {
-    super(_defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl);
     // Setting the value accessor directly (instead of using
     // the providers) to avoid running into a circular import.
     if (this.ngControl != null) { this.ngControl.valueAccessor = this; }
-  }
-
-  ngDoCheck() {
-    if (this.ngControl) {
-      // We need to re-evaluate this on every change detection cycle, because there are some
-      // error triggers that we can't subscribe to (e.g. parent form submissions). This means
-      // that whatever logic is in here has to be super lean or we risk destroying the performance.
-      this.updateErrorState();
-    }
   }
 
   @HostListener('input')
