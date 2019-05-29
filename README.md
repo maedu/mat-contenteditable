@@ -34,6 +34,8 @@ I found some useful CSS that can be used with this lib
 
 ### CKEditor5 support
 
+#### May 29, 2019 - ckeditor5 is broken in Angular V8
+
 There are 2 directives that can be used with CKEditor5.
 
 `matCkeditor` simply implements `MatFormFieldControl`

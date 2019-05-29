@@ -3,7 +3,7 @@ import { MatFormFieldControl, ErrorStateMatcher, CanUpdateErrorState } from '@an
 // import { CKEditorComponent } from '@ckeditor/ckeditor5-angular//ckeditor.component';
 import { Subject } from 'rxjs';
 import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
-import { _MatInputMixinBase } from 'projects/mat-contenteditable/src/lib/mat-contenteditable.directive';
+import { _MatInputMixinBase } from './mat-contenteditable.directive';
 
 
 @Directive({
