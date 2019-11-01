@@ -1,8 +1,9 @@
 import { Directive, Input, HostBinding, ViewContainerRef, OnInit, Optional, Self, DoCheck } from '@angular/core';
-import { MatFormFieldControl, ErrorStateMatcher, CanUpdateErrorState } from '@angular/material';
+import { MatFormFieldControl } from '@angular/material/form-field';
 // import { CKEditorComponent } from '@ckeditor/ckeditor5-angular//ckeditor.component';
 import { Subject } from 'rxjs';
 import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
+import { CanUpdateErrorState, ErrorStateMatcher } from '@angular/material/core';
 import { _MatInputMixinBase } from './mat-contenteditable.directive';
 
 
