@@ -7,4 +7,5 @@ export * from './lib/mat-ckeditor.directive';
 export * from './lib/mat-ckeditor-balloon.directive';
 export * from './lib/form-field-sizer.directive';
 export * from './lib/mat-contenteditable.module';
+export * from './lib/mat-ckeditor.module';
 export * from './lib/validators';

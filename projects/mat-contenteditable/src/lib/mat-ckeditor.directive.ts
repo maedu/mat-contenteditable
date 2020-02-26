@@ -1,9 +1,10 @@
-import { Directive, Input, HostBinding, ViewContainerRef, OnInit, Optional, Self, DoCheck } from '@angular/core';
-import { MatFormFieldControl, ErrorStateMatcher, CanUpdateErrorState } from '@angular/material';
-// import { CKEditorComponent } from '@ckeditor/ckeditor5-angular//ckeditor.component';
+import { Directive, Input, HostBinding, ViewContainerRef, OnInit, Optional, Self, DoCheck, Host } from '@angular/core';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 import { Subject } from 'rxjs';
 import { NgControl, NgForm, FormGroupDirective } from '@angular/forms';
-import { _MatInputMixinBase } from 'projects/mat-contenteditable/src/lib/mat-contenteditable.directive';
+import { CanUpdateErrorState, ErrorStateMatcher } from '@angular/material/core';
+import { _MatInputMixinBase } from './mat-contenteditable.directive';
 
 
 @Directive({
@@ -66,10 +67,8 @@ export class MatCkeditorDirective  extends _MatInputMixinBase
 
   @HostBinding('attr.aria-describedby') describedBy = '';
 
-  protected editor;
-
   constructor(
-    // @Host() @Self() @Optional() public editor: CKEditorComponent,
+    @Host() @Self() @Optional() public editor: CKEditorComponent,
     protected readonly viewRef: ViewContainerRef,
     @Optional() @Self() public ngControl: NgControl,
     @Optional() _parentForm: NgForm,
@@ -80,9 +79,6 @@ export class MatCkeditorDirective  extends _MatInputMixinBase
   }
 
   ngOnInit() {
-    // Can't use injection to get component reference
-    // https://github.com/angular/angular/issues/8277
-    this.editor = this.viewRef['_data'].componentView.component;
     this.editor.blur.subscribe(() => {
       this.focused = false;
       this.stateChanges.next();

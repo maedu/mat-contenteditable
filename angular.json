@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/ng-mat-contenteditable",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -32,6 +33,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -142,7 +149,8 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/mat-contenteditable/ng-package.prod.json"
+              "project": "projects/mat-contenteditable/ng-package.prod.json",
+              "tsConfig": "projects/mat-contenteditable/tsconfig.lib.prod.json"
             }
           }
         },
@@ -169,5 +177,8 @@
       }
     }
   },
-  "defaultProject": "ng-mat-contenteditable"
+  "defaultProject": "ng-mat-contenteditable",
+  "cli": {
+    "analytics": "e8ad7d4c-cb31-472c-9496-7696b8c810d3"
+  }
 }
