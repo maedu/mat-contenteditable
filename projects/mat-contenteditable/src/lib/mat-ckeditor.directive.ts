@@ -13,9 +13,10 @@ import { _MatInputMixinBase } from './mat-contenteditable.directive';
     { provide: MatFormFieldControl, useExisting: MatCkeditorDirective },
   ]
 })
-export class MatCkeditorDirective  extends _MatInputMixinBase
-  implements MatFormFieldControl<string>, DoCheck, CanUpdateErrorState , OnInit {
+export class MatCkeditorDirective extends _MatInputMixinBase
+  implements MatFormFieldControl<string>, DoCheck, CanUpdateErrorState, OnInit {
 
+  updateErrorState(): void { }
   /**
    * Implemented as part of MatFormFieldControl.
    * See https://material.angular.io/guide/creating-a-custom-form-field-control

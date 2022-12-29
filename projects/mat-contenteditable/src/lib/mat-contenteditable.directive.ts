@@ -11,18 +11,21 @@ import {
 } from '@angular/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import { ErrorStateMatcher, mixinErrorState, CanUpdateErrorStateCtor, CanUpdateErrorState } from '@angular/material/core';
+import { ErrorStateMatcher, mixinErrorState, CanUpdateErrorState } from '@angular/material/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
+import { _Constructor, _AbstractConstructor } from '@angular/material/core';
+
+declare type CanUpdateErrorStateCtor = _Constructor<CanUpdateErrorState> & _AbstractConstructor<CanUpdateErrorState>;
 
 // Boilerplate for applying mixins to MatInput.
 /** @docs-private */
 class MatInputBase {
   constructor(public _defaultErrorStateMatcher: ErrorStateMatcher,
-              public _parentForm: NgForm,
-              public _parentFormGroup: FormGroupDirective,
-              /** @docs-private */
-              public ngControl: NgControl) {}
+    public _parentForm: NgForm,
+    public _parentFormGroup: FormGroupDirective,
+    /** @docs-private */
+    public ngControl: NgControl) { }
 }
 export const _MatInputMixinBase: CanUpdateErrorStateCtor & typeof MatInputBase =
   mixinErrorState(MatInputBase);
@@ -37,10 +40,13 @@ export const _MatInputMixinBase: CanUpdateErrorStateCtor & typeof MatInputBase =
 export class MatContenteditableDirective extends _MatInputMixinBase
   implements ControlValueAccessor, MatFormFieldControl<string>, DoCheck, CanUpdateErrorState {
 
+
+  updateErrorState(): void { }
+
   /**
-   * Implemented as part of MatFormFieldControl.
-   * See https://material.angular.io/guide/creating-a-custom-form-field-control
-   */
+ * Implemented as part of MatFormFieldControl.
+ * See https://material.angular.io/guide/creating-a-custom-form-field-control
+ */
   static nextId = 0;
 
   @Input()
